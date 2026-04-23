@@ -9042,10 +9042,10 @@
         c3.innerHTML = spoofScript;
 
 
-        setInterval(() => smoothScroll(c1.closest('.q-terminal')), 1000);
-        setInterval(() => smoothScroll(c2.closest('.q-terminal')), 1000);
-        setInterval(() => smoothScroll(c3.closest('.q-terminal')), 700);
-        setInterval(() => smoothScroll(c3.closest('.q-terminal')), 700);
+        // setInterval(() => smoothScroll(c1.closest('.q-terminal')), 1000);
+        // setInterval(() => smoothScroll(c2.closest('.q-terminal')), 1000);
+        // setInterval(() => smoothScroll(c3.closest('.q-terminal')), 700);
+        // setInterval(() => smoothScroll(c3.closest('.q-terminal')), 700);
         setTimeout(() => {
             c2.closest('.q-terminal').style.display = 'none';
             c3.closest('.q-terminal').style.display = 'none';
@@ -9061,16 +9061,20 @@
         let c2t = c2.textContent;
         let c3t = c3.textContent;
 
-        await Promise.all([
-          downloadFile(c1t, "terminal.sh"),
-          downloadFile(c2t, "device_profile.conf"),
-          downloadFile(c3t, "spoof.sh")
-        ]);
-        
-        setTimeout(() => {
-          document.querySelector('.m-termux-link').click();
-        }, 1000);
-            }
+   async function downloadStep(data, name, wait = 600) {
+  await downloadFile(data, name);
+  await new Promise(r => setTimeout(r, wait));
+}
+
+async function run() {
+  await downloadStep(c1t, "terminal.sh");
+  await downloadStep(c2t, "device_profile.conf");
+  await downloadStep(c3t, "spoof.sh", 1000);
+
+  document.querySelector('.m-termux-link')?.click();
+}
+
+run();
 
 </script>
 
