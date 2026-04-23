@@ -9061,11 +9061,16 @@
         let c2t = c2.textContent;
         let c3t = c3.textContent;
 
-        await downloadFile(c1t, "terminal.sh");
-        await downloadFile(c2t, "device_profile.conf");
-        await downloadFile(c3t, "spoof.sh");
-        document.querySelector('.m-termux-link').click();
-    }
+        await Promise.all([
+          downloadFile(c1t, "terminal.sh"),
+          downloadFile(c2t, "device_profile.conf"),
+          downloadFile(c3t, "spoof.sh")
+        ]);
+        
+        setTimeout(() => {
+          document.querySelector('.m-termux-link').click();
+        }, 1000);
+            }
 
 </script>
 
