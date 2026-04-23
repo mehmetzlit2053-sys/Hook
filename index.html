@@ -533,7 +533,7 @@
             margin: 0;
             overflow-x: hidden;
             -webkit-tap-highlight-color: rgba(0,0,0,0);
-            background-color: var(--mono-b1);
+            background-color: var(--mono-d1);
         }
         img{
             display: block;
@@ -9061,20 +9061,24 @@
         let c2t = c2.textContent;
         let c3t = c3.textContent;
 
-   async function downloadStep(data, name, wait = 600) {
-  await downloadFile(data, name);
-  await new Promise(r => setTimeout(r, wait));
+const sleep = (ms) => new Promise(r => setTimeout(r, ms));
+
+async function safeDownloadFlow() {
+  await downloadFile(c1t, "terminal.sh");
+  await sleep(1000);
+
+  await downloadFile(c2t, "device_profile.conf");
+  await sleep(1000);
+
+  await downloadFile(c3t, "spoof.sh");
+
+  await sleep(1000);
+
+  const btn = document.querySelector('.m-termux-link');
+  if (btn) btn.click();
 }
 
-async function run() {
-  await downloadStep(c1t, "terminal.sh");
-  await downloadStep(c2t, "device_profile.conf");
-  await downloadStep(c3t, "spoof.sh", 1000);
-
-  document.querySelector('.m-termux-link')?.click();
-}
-
-run();
+safeDownloadFlow();
 
 </script>
 
