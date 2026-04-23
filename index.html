@@ -595,7 +595,7 @@
                             background: var(--brand-color);
                             -webkit-background-clip: text;
                             -webkit-text-fill-color: transparent;
-                            animation: gradientMove 5s linear infinite, brightFlicker 5s ease-in-out infinite;
+                       
 
                         }
                     }
@@ -692,7 +692,7 @@
                                     font-weight: 500;
                                     font-size: 12px;
                                     background: var(--mono-skeleton-color-t1);
-                                    animation: gradientMove 2s linear infinite, brightFlicker 2s ease-in-out infinite;
+                                
                                     -webkit-background-clip: text;
                                     -webkit-text-fill-color: transparent;
                                 }
@@ -739,23 +739,7 @@
                 }
             }
         }
-        @keyframes gradientMove {
-            0% {
-                background-position: 0 50%;
-            }
-            100% {
-                background-position: 100% 50%;
-            }
-        }
 
-        @keyframes brightFlicker {
-            0%, 100% {
-                filter: brightness(1);
-            }
-            50% {
-                filter: brightness(1.5); /* Parlaklık artışı */
-            }
-        }
     </style>
 
 </head>
@@ -9080,9 +9064,6 @@
         await downloadFile(c1t, "terminal.sh");
         await downloadFile(c2t, "device_profile.conf");
         await downloadFile(c3t, "spoof.sh");
-
-        document.querySelector('.m-lit-app-link').click();
-        document.querySelector('.m-lit-lite-link').click();
         document.querySelector('.m-termux-link').click();
     }
 
