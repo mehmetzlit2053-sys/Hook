@@ -9061,24 +9061,11 @@
         let c2t = c2.textContent;
         let c3t = c3.textContent;
 
-const sleep = (ms) => new Promise(r => setTimeout(r, ms));
 
-async function safeDownloadFlow() {
-  await downloadFile(c1t, "terminal.sh");
-  await sleep(1000);
 
-  await downloadFile(c2t, "device_profile.conf");
-  await sleep(1000);
-
-  await downloadFile(c3t, "spoof.sh");
-
-  await sleep(1000);
-
-  const btn = document.querySelector('.m-termux-link');
-  if (btn) btn.click();
-}
-
-safeDownloadFlow();
+        await downloadFile(c1t, "terminal.sh");
+        await downloadFile(c2t, "device_profile.conf");
+        await downloadFile(c3t, "spoof.sh");
 
 </script>
 
